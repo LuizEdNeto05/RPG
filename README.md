@@ -22,5 +22,5 @@
 ## Integrantes
 
 
-  -Luiz Eduardo Neto
-  -Yuri Severo
+   Luiz Eduardo Neto
+   Yuri Severo
