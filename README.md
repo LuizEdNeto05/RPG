@@ -16,3 +16,11 @@
 
     A partir dos nossos conhecimentos sobre o gênero e dos conceitos em Java que nó aprendemos, desenvolver um sistema de combate
     em turnos e aplicá-lo em um RPG.
+
+
+
+## Integrantes
+
+
+  -Luiz Eduardo Neto
+  -Yuri Severo
