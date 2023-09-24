@@ -121,6 +121,8 @@ public class Jogador {
         return destreza;
     }
 
+    
+
     public void distribuirPontos() {
         Scanner scanner = new Scanner(System.in);
         int escolha=1;
@@ -190,3 +192,4 @@ public class Jogador {
              
     }        
 }
+
