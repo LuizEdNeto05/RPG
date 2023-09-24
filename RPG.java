@@ -58,9 +58,13 @@ public class RPG {
         player = nome.nextLine();
         Jogador jogador = new Jogador(player,100, 0,0,0,0,new Arma(),new Armadura());
 
+        limparTela();
+
         //Atribuir pontos
         System.out.println("Olá "+jogador.getNome()+"! Quais são as suas halibidades?");       
         jogador.distribuirPontos();
+        
+        limparTela();
         
         //Escolher arma
         Arma rapieira = new Arma("Arma Leve", 15); //rever o dano constante
@@ -69,6 +73,8 @@ public class RPG {
         System.out.println("1) Rapieira "+rapieira.getCategoria()+" 2) Machado "+machado.getCategoria());
         int escolhaArma = scanner2.nextInt();
 
+        limparTela();
+        
         //->Definição do dano da arma
         double danoJogador=0;
         if (escolhaArma==1) {
@@ -93,8 +99,12 @@ public class RPG {
         
 
         //Combate 1
-
-
+        Inimigo Goblin = new Inimigo("Goblin",100.00, 30, 45, 5);
+        do{
+            if(jogador.agilidade>inimigoAgilidade){
+                
+            }
+        }while(inimigoVida>0 || jogador.pv>0);
 
         /*}else if(x == 2){      
             System.out.println("Lore"); //LORE A SER DEFINIDA
@@ -106,7 +116,7 @@ public class RPG {
         scanner2.close();
         nome.close();
 
-    }
+        }
 }
 }
     
