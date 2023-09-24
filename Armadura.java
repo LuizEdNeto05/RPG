@@ -26,7 +26,7 @@ public class Armadura {
     }
 
     public static double ArmaduraSimples(int constituicao){
-        double ArmaduraLeve = 20 + (1.5*constituicao);
+        double ArmaduraLeve = 5 + (1.5*constituicao);
         return ArmaduraLeve;
     }
 
