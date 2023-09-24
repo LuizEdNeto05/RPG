@@ -38,7 +38,12 @@ public class RPG {
         int cura = 3, curainimigo =3;
         Random rand = new Random();
         
-        //List<Inimigo> inimigos1 = new ArrayList<>(); 
+        List<Inimigo> inimigos1 = new ArrayList<>(); 
+        inimigos1.add(new Inimigo("Goblin", 20, 30, 5,5));
+        inimigos1.add(new Inimigo("Ogro", 40, 50, 5, 5));
+        inimigos1.add(new Inimigo("Esqueleto", 30, 5, 4, 3));
+
+        Inimigo inimigo = inimigos1.get(rand.nextInt(inimigos1.size()));
         
          
         //Menu
@@ -70,8 +75,8 @@ public class RPG {
         limparTela();
         
         //Escolher arma
-        Arma rapieira = new Arma("Arma Leve", 15); //rever o dano constante
-        Arma machado = new Arma("Arma pesada", 30); //rever o dano constante
+        Arma rapieira = new Arma("(Arma Leve)\n", 15); //rever o dano constante
+        Arma machado = new Arma("(Arma pesada)", 30); //rever o dano constante
         System.out.println("Agora escolha sua arma:");
         System.out.println("1) Rapieira "+rapieira.getCategoria()+" 2) Machado "+machado.getCategoria());
         int escolhaArma = scanner2.nextInt();
@@ -105,25 +110,30 @@ public class RPG {
         
 
         //Combate 1
-        Inimigo Goblin = new Inimigo("Goblin",100, 30, 5, 5);
+       
 
         Scanner acao = new Scanner(System.in);
         int agir;
+
+        System.out.println("Os 3 marmanjos tiram zerinho ou um para decidir quem vai te enfrentar");
+        System.out.println("E foi definido que o seu adversário será o " +inimigo.getinimigoNome());
         while (true){
-            if(jogador.agilidade>Goblin.inimigoAgilidade){
-                System.out.println("Goblin: "+ Goblin.inimigoVida);
+            if(jogador.agilidade>inimigo.inimigoAgilidade){
+                System.out.println(inimigo.getinimigoNome()+ inimigo.inimigoVida);
                 System.out.println(""+jogador.getNome() +jogador.pv);
                 agir = acao.nextInt();
 
                 if(agir == 1)
                 {
-                    double danototal = danoJogadorLeve - Goblin.inimigoDefesa;
-                    Goblin.inimigoVida -= danototal;
+                    double danototal = danoJogadorLeve - inimigo.inimigoDefesa;
+                    
+                    inimigo.inimigoVida -= danototal;
+                    System.out.println("Voce causou :"+danototal);
 
                 }else if(agir == 2)
                 {
                     double defesatotal = defesaJogador*2;
-                    System.out.println("A defesa aumentou");
+                    System.out.println("A defesa aumentou para:" +defesatotal);
                 }else if(agir == 3)
                 {
                     
@@ -147,9 +157,10 @@ public class RPG {
                     int danoNpc = dado6() + dado6() + dado6() + 5;
                     double danoNPC = danoNpc - defesaJogador;
                     jogador.pv -= danoNPC;
+                    System.out.println("Seu inimigo causou dano de: "+danoNPC);
                 }else if(escolhaInimigo == 2)
                 {
-                    int def = Goblin.inimigoDefesa * 2;
+                    int def = inimigo.inimigoDefesa * 2;
                     System.out.println("Defesa aumentada para: "+def);
                 }else if(escolhaInimigo == 3)
                 {
@@ -157,8 +168,9 @@ public class RPG {
                     {
                         
                     int curaEnemy = dado6() + dado6() + dado6();
-                    jogador.pv += curaEnemy;
+                    inimigo.inimigoVida += curaEnemy;
                     curainimigo --;
+                    System.out.println("Seu inimigo recuperou de em: " +curaEnemy);
                     }else if(cura <= 0){
                         System.out.println("adversario tenta curar mas ele n tem mais cura");
 
@@ -166,7 +178,7 @@ public class RPG {
                 }
 
 
-                if(Goblin.inimigoVida <= 0 || jogador.pv<=0)
+                if(inimigo.inimigoVida <= 0 || jogador.pv<=0)
                 {
                     break;
                 }
