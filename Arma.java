@@ -58,13 +58,13 @@ public class Arma {
         return random.nextInt(12) + 1;
     }
 
-    public static double ArmaLeve(int destreza){
-        double danoArmaLeve = 15 + dado4() + dado4() + dado4() + destreza;
+    public static double ArmaLeve(int destreza, int danoConstante){
+        double danoArmaLeve = danoConstante + dado4() + dado4() + dado4() + destreza;
         return danoArmaLeve;
     }
 
-    public static double ArmaPesada(int forca){
-        double danoArmaPesada = 30 + dado12() + (1.5*forca);
+    public static double ArmaPesada(int forca, int danoConstante){
+        double danoArmaPesada = danoConstante + dado12() + (1.5*forca);
         return danoArmaPesada;
     }
 }
