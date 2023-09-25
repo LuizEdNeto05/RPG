@@ -86,11 +86,11 @@ public class RPG {
         //->Definição do dano da arma
         double danoJogadorLeve=0, danoJogadorPesado =0;
         if (escolhaArma==1) {
-            danoJogadorLeve = Arma.ArmaLeve(jogador.destreza);
+            danoJogadorLeve = Arma.ArmaLeve(jogador.destreza, rapieira.danoConstante);
             System.out.println("Sua arma causa "+danoJogadorLeve+" de dano");
             
         }else if (escolhaArma==2) {
-            danoJogadorPesado = Arma.ArmaPesada(jogador.forca);
+            danoJogadorPesado = Arma.ArmaPesada(jogador.forca, machado.danoConstante);
             System.out.println("Sua arma causa "+danoJogadorPesado+" de dano");
             
         }
