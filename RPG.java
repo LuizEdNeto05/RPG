@@ -183,6 +183,78 @@ public class RPG {
                     break;
                 }
 
+            }else if(jogador.agilidade<inimigo.inimigoAgilidade)
+            {
+                System.out.println(inimigo.getinimigoNome()+ inimigo.inimigoVida);
+                System.out.println(""+jogador.getNome() +jogador.pv);
+
+               int escolhaInimigo = rand.nextInt(3) + 1;
+
+               
+
+                if(escolhaInimigo == 1)
+                {
+                    int danoNpc = dado6() + dado6() + dado6() + 5;
+                    double danoNPC = danoNpc - defesaJogador;
+                    jogador.pv -= danoNPC;
+                    System.out.println("Seu inimigo causou dano de: "+danoNPC);
+                }else if(escolhaInimigo == 2)
+                {
+                    int def = inimigo.inimigoDefesa * 2;
+                    System.out.println("Defesa aumentada para: "+def);
+                }else if(escolhaInimigo == 3)
+                {
+                    if(curainimigo>0)
+                    {
+                        
+                    int curaEnemy = dado6() + dado6() + dado6();
+                    inimigo.inimigoVida += curaEnemy;
+                    curainimigo --;
+                    System.out.println("Seu inimigo recuperou de em: " +curaEnemy);
+                    }else if(cura <= 0){
+                        System.out.println("adversario tenta curar mas ele n tem mais cura");
+
+                    }
+                }
+
+                System.out.println(inimigo.getinimigoNome()+ inimigo.inimigoVida);
+                System.out.println(""+jogador.getNome() +jogador.pv);
+
+                agir = acao.nextInt();
+
+                if(agir == 1)
+                {
+                    double danototal = danoJogadorLeve - inimigo.inimigoDefesa;
+                    
+                    inimigo.inimigoVida -= danototal;
+                    System.out.println("Voce causou :"+danototal);
+
+                }else if(agir == 2)
+                {
+                    double defesatotal = defesaJogador*2;
+                    System.out.println("A defesa aumentou para:" +defesatotal);
+                }else if(agir == 3)
+                {
+                    
+                    if(cura>0)
+                    {
+                        
+                    int curaTotal = dado6() + dado6() + dado6();
+                    jogador.pv += curaTotal;
+                    cura --;
+                    }else if(cura <= 0){
+                        System.out.println("voce n tem mais cura");
+
+                    }
+                    
+
+                }
+
+                if(inimigo.inimigoVida <= 0 || jogador.pv<=0)
+                {
+                    break;
+                }
+
             }
         }
 
