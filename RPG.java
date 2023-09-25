@@ -31,12 +31,19 @@ public class RPG {
 
     public static void main (String args[])
     {
-        Scanner scanner1 = new Scanner(System.in);
-        Scanner scanner2 = new Scanner(System.in);
-        Scanner nome = new Scanner(System.in);
+         Scanner scanner1;
+         Scanner scanner2;
+         Scanner nome;
+         int escolhaMenu;
+        while(true){
+          scanner1 = new Scanner(System.in);
+         scanner2 = new Scanner(System.in);
+         nome = new Scanner(System.in);
         String player;
         int cura = 3, curainimigo =3;
         Random rand = new Random();
+
+        int danoJogador =0;
         
         List<Inimigo> inimigos1 = new ArrayList<>(); 
         inimigos1.add(new Inimigo("Goblin", 20, 30, 5,5));
@@ -46,6 +53,7 @@ public class RPG {
         Inimigo inimigo = inimigos1.get(rand.nextInt(inimigos1.size()));
         
          
+            
         //Menu
         System.out.println("                                                            ");
         System.out.println("                                                            ");
@@ -56,7 +64,7 @@ public class RPG {
         System.out.println("1) Novo Jogo");
         System.out.println("2) Lore");
         System.out.println("3) Sair");
-        int escolhaMenu = scanner1.nextInt();
+        escolhaMenu = scanner1.nextInt();
         
         if(escolhaMenu==1){
         limparTela();
@@ -88,11 +96,12 @@ public class RPG {
         if (escolhaArma==1) {
             danoJogadorLeve = Arma.ArmaLeve(jogador.destreza, rapieira.danoConstante);
             System.out.println("Sua arma causa "+danoJogadorLeve+" de dano");
+            danoJogador += danoJogadorLeve;
             
         }else if (escolhaArma==2) {
             danoJogadorPesado = Arma.ArmaPesada(jogador.forca, machado.danoConstante);
             System.out.println("Sua arma causa "+danoJogadorPesado+" de dano");
-            
+            danoJogador += danoJogadorPesado;
         }
 
         //Definição da defesa da Armadura
@@ -102,7 +111,7 @@ public class RPG {
         System.out.println("Status de "+jogador.getNome());
         
         System.out.println("Defesa: "+defesaJogador);
-        System.out.println("Dano: " +danoJogadorLeve);
+        System.out.println("Dano: " +danoJogador);
         System.out.println("Agilidade: " +jogador.agilidade);
         limparTela();
 
@@ -115,8 +124,10 @@ public class RPG {
         Scanner acao = new Scanner(System.in);
         int agir;
 
-        System.out.println("Os 3 marmanjos tiram zerinho ou um para decidir quem vai te enfrentar");
+        //System.out.println("Os 3 marmanjos tiram zerinho ou um para decidir quem vai te enfrentar");
         System.out.println("E foi definido que o seu adversário será o " +inimigo.getinimigoNome());
+
+        
         while (true){
             if(jogador.agilidade>inimigo.inimigoAgilidade){
                 System.out.println(inimigo.getinimigoNome()+ inimigo.inimigoVida);
@@ -125,7 +136,7 @@ public class RPG {
 
                 if(agir == 1)
                 {
-                    double danototal = danoJogadorLeve - inimigo.inimigoDefesa;
+                    double danototal = danoJogador - inimigo.inimigoDefesa;
                     
                     inimigo.inimigoVida -= danototal;
                     System.out.println("Voce causou :"+danototal);
@@ -224,7 +235,7 @@ public class RPG {
 
                 if(agir == 1)
                 {
-                    double danototal = danoJogadorLeve - inimigo.inimigoDefesa;
+                    double danototal = danoJogador - inimigo.inimigoDefesa;
                     
                     inimigo.inimigoVida -= danototal;
                     System.out.println("Voce causou :"+danototal);
@@ -258,17 +269,24 @@ public class RPG {
             }
         }
 
-        /*}else if(x == 2){      
+        
+        
+
+        }else if(escolhaMenu == 2){      
             System.out.println("Lore"); //LORE A SER DEFINIDA
-        }else if(x==3){
+        }else if(escolhaMenu==3){
+
+            break;
+              
 
         }
-        */ 
-        scanner1.close();
-        scanner2.close();
-        nome.close();
-
-        }
+        
+        
+       
+    }
+             scanner1.close();
+              scanner2.close();
+              nome.close();
 }
 
 /*public void acoesPersonagem()
