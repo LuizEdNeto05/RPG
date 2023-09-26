@@ -6,24 +6,13 @@ public class Jogador {
    public int pv;
    public int forca;
    public int constituicao;
-   public int constituicao2;
    public int agilidade;
    public int destreza;
    private Arma arma;
    private Armadura armadura;
    int dado;
 
-    public Jogador(){
     
-    this.nome=" ";
-    this.pv=0;
-    this.forca=0;
-    this.constituicao=0;
-    this.constituicao2=0;
-    this.agilidade=0;
-    this.destreza=0;
-
-    }
 
     // Função para sortear um número entre 1 e 6
     public static int dado6() {
@@ -39,6 +28,7 @@ public class Jogador {
         setConstituicao(constituicao);
         setAgilidade(agilidade);
         setDestreza(destreza);
+        setArma(arma);
         
 
     }
@@ -122,6 +112,22 @@ public class Jogador {
     {
         return destreza;
     }
+
+    public void setArma(Arma arma) {
+        this.arma = arma;
+    }
+
+    public Arma getArma() {
+        return arma;
+    }
+
+    public void setArmadura(Armadura armadura) {
+        this.armadura = armadura;
+    }
+
+    public Armadura getArmadura() {
+        return armadura;
+    }
     
 
     public void DistribuirPontos(int i) {
@@ -147,8 +153,10 @@ public class Jogador {
             pontos = 15;
         } else if (i==2) {
             pontos = 5;
+        }else if (i==3){
+            pontos = 10;
         }
-        
+         
 
         System.out.println("Insira a quantidade para Força:");
         int escolhaForca = scanner.nextInt();
@@ -204,4 +212,10 @@ public class Jogador {
                     
     //scanner.close();
     }
-}
+
+    
+        
+    }
+
+
+
