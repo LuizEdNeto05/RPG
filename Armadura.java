@@ -20,23 +20,23 @@ public class Armadura {
         }
     }
 
-    public int getdanoConstante()
+    public int getdefesaConstante()
     {
         return defesa;
     }
 
-    public static double ArmaduraSimples(int constituicao){
-        double ArmaduraLeve = 5 + (1.5*constituicao);
+    public static double ArmaduraSimples(int constituicao, int defesaConstante){
+        double ArmaduraLeve = defesaConstante + (1.5*constituicao);
         return ArmaduraLeve;
     }
 
-    /*public static double ArmaduraMedia(int constituicao){
-        double ArmaduraMedia = 30 + (1.5*constituicao);
+    public static double ArmaduraMedia(int constituicao, int defesaConstante){
+        double ArmaduraMedia = defesaConstante + (1.5*constituicao);
         return ArmaduraMedia;
     }
 
-    public static double ArmaduraPesada(int constituicao){
-        double ArmaduraPesada = 40 + (1.5*constituicao);
+    public static double ArmaduraPesada(int constituicao, int defesaConstante){
+        double ArmaduraPesada = defesaConstante + (1.5*constituicao);
         return ArmaduraPesada;
-    }*/
+    }
 }
