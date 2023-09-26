@@ -68,12 +68,4 @@ public class Inimigo {
     public int getinimigoAgilidade(){
         return inimigoAgilidade;
     }
-    public void InimigoAtributos(){
-        String nome = getinimigoNome();
-        double vida = getinimigoVida();
-        int forca = getinimigoForca();
-        int defesa = getinimigoDefesa();
-
-        
-    }
 }
