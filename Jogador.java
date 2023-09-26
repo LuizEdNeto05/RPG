@@ -6,6 +6,7 @@ public class Jogador {
    public int pv;
    public int forca;
    public int constituicao;
+   public int constituicao2;
    public int agilidade;
    public int destreza;
    private Arma arma;
@@ -18,6 +19,7 @@ public class Jogador {
     this.pv=0;
     this.forca=0;
     this.constituicao=0;
+    this.constituicao2=0;
     this.agilidade=0;
     this.destreza=0;
 
@@ -120,12 +122,11 @@ public class Jogador {
     {
         return destreza;
     }
-
     
 
-    public void distribuirPontos() {
+    public void DistribuirPontos(int i) {
         Scanner scanner = new Scanner(System.in);
-        int escolha=1;
+        
 
         System.out.println("Você possui 15 pontos para distribuir.");
         System.out.println("1. Força: " + forca);
@@ -133,40 +134,53 @@ public class Jogador {
         System.out.println("3. Agilidade: " + agilidade);
         System.out.println("4. Destreza: " + destreza);
 
-        do{
-
-        forca= 0;
-        constituicao = 0;
-        agilidade = 0;
-        destreza = 0;
-
-        int pontos = 15;
+        int loop=1;
+        while(loop==1){
+        
+        forca= getForca();
+        constituicao = getConstituicao();
+        agilidade = getAgilidade();
+        destreza = getDestreza();
+        
+        int pontos = 0;
+        if (i==1) {
+            pontos = 15;
+        } else if (i==2) {
+            pontos = 5;
+        }
+        
 
         System.out.println("Insira a quantidade para Força:");
         int escolhaForca = scanner.nextInt();
         pontos -= escolhaForca;
-        forca  += escolhaForca;
+        forca  = escolhaForca + getForca();
             
         System.out.println("Restam "+ pontos +" pontos");
 
         System.out.println("Insira a quantidade para Constituição:");
         int escolhaConstituicao = scanner.nextInt();
         pontos -= escolhaConstituicao;
-        constituicao += escolhaConstituicao;
+        constituicao = escolhaConstituicao + getConstituicao();
 
         System.out.println("Restam "+ pontos +" pontos");
 
         System.out.println("Insira a quantidade para Agilidade:");
         int escolhaAgilidade = scanner.nextInt();
         pontos -= escolhaAgilidade;
-        agilidade += escolhaAgilidade;
+        agilidade = escolhaAgilidade + getAgilidade();
 
         System.out.println("Restam "+ pontos +" pontos");
 
         System.out.println("Insira a quantidade para Destreza:");
         int escolhaDestreza = scanner.nextInt();
         pontos -= escolhaDestreza;
-        destreza += escolhaDestreza;
+        destreza = escolhaDestreza + getDestreza();
+            
+            if(pontos>0)
+            {
+                System.out.println("Ainda restaram pontos, utilize todos!");
+                continue;
+            }
 
         System.out.println("1. Força: " + forca);
         System.out.println("2. Constituição: " + constituicao);
@@ -176,20 +190,18 @@ public class Jogador {
         System.out.println("Deseja alterar ou manter?");
         System.out.println("1) Alterar 2) Manter");
 
-        escolha = scanner.nextInt();
+        int escolha = scanner.nextInt();
 
         if(escolha == 1){
 
         }else if(escolha == 2){
-            escolha=2;
+            break;
         }else{
             System.out.println("Escolha inválida");
         }
 
-        }while(escolha == 1);
+        }
                     
     //scanner.close();
-             
-    }        
+    }
 }
-
