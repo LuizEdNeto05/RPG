@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class Jogador {
    private String nome;
-   public int pv;
-   public int forca;
-   public int constituicao;
-   public int agilidade;
-   public int destreza;
+   private int pv;
+   private int forca;
+   private int constituicao;
+   private int agilidade;
+   private int destreza;
    private Arma arma;
    private Armadura armadura;
    int dado;
