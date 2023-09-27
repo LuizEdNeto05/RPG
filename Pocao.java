@@ -33,7 +33,7 @@ public class Pocao {
             pontos = dado6() + dado6() + dado6();
 
             
-            System.out.println("Você usou uma poção de cura e recuperou " + pontos + " pontos de vida.");
+            System.out.println("Vida recuperada em " + pontos + " pontos de vida.");
             return pontos;
            
 
