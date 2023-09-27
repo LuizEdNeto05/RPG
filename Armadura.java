@@ -1,42 +1,70 @@
-public class Armadura {
-    int defesa;
+import java.util.Random;
 
-    public Armadura()
+public class Arma {
+    private String categoria;
+   private int danoConstante;
+
+    public Arma()
     {
-        this.defesa = 0;
-
+        this.categoria = " ";
+        this.danoConstante = 0;
     }
 
-    public Armadura(int defesa)
+    public Arma(String categoria, int danoConstante)
     {
-        this.defesa = defesa;
+        this.categoria = categoria;
+        this.danoConstante = danoConstante;
     }
 
-    public void setdefesa(int defesa)
+    public void setCategoria(String categoria)
     {
-        if(defesa>0)
+        if(categoria.length()>0) {
+            this.categoria = categoria;
+        } 
+    }
+
+    public String getCategoria()
+    {
+        return categoria;
+    }
+
+    public void setdanoConstante(int danoConstante)
+    {
+        if(danoConstante>0)
         {
-            this.defesa=defesa;
+            this.danoConstante=danoConstante;
         }
     }
 
-    public int getdefesaConstante()
-    {
-        return defesa;
+    public int getdanoConstante(){
+        return danoConstante;
     }
 
-    public static double ArmaduraSimples(int constituicao, int defesaConstante){
-        double ArmaduraLeve = defesaConstante + (1.5*constituicao);
-        return ArmaduraLeve;
+    // Função para sortear um número entre 1 e 4
+    public static int dado4() {
+        Random random = new Random();
+        return random.nextInt(4) + 1;
     }
 
-    public static double ArmaduraMedia(int constituicao, int defesaConstante){
-        double ArmaduraMedia = defesaConstante + (1.5*constituicao);
-        return ArmaduraMedia;
+    // Função para sortear um número entre 1 e 6
+    public static int dado6() {
+        Random random = new Random();
+        return random.nextInt(6) + 1;
     }
 
-    public static double ArmaduraPesada(int constituicao, int defesaConstante){
-        double ArmaduraPesada = defesaConstante + (1.5*constituicao);
-        return ArmaduraPesada;
+    // Função para sortear um número entre 1 e 12
+    public static int dado12() {
+        Random random = new Random();
+        return random.nextInt(12) + 1;
+    }
+
+    public static double ArmaLeve(int destreza, int danoConstante){
+        double danoArmaLeve = danoConstante + dado4() + dado4() + dado4() + destreza;
+        return danoArmaLeve;
+    }
+
+    public static double ArmaPesada(int forca, int danoConstante){
+        double danoArmaPesada = danoConstante + dado12() + (1.5*forca);
+        return danoArmaPesada;
     }
 }
