@@ -1,8 +1,8 @@
 import java.util.Random;
 
 public class Arma {
-    String categoria;
-    int danoConstante;
+    private String categoria;
+   private int danoConstante;
 
     public Arma()
     {
