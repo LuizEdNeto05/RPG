@@ -1,9 +1,9 @@
 public class Inimigo {
-    public String inimigoNome;
-    public double inimigoVida;
-    public int inimigoForca;
-    public int inimigoDefesa;
-    public int inimigoAgilidade;
+    private String inimigoNome;
+    private double inimigoVida;
+    private int inimigoForca;
+    private int inimigoDefesa;
+    private int inimigoAgilidade;
 
     public Inimigo(String inimigoNome, double inimigoVida, int inimigoForca, int inimigoDefesa, int inimigoAgilidade){
         setinimigoNome(inimigoNome);
@@ -22,7 +22,7 @@ public class Inimigo {
 
     }
 
-    public void setinimigoVida(int inimigoVida)
+    public void setinimigoVida(double inimigoVida)
     {
         if(inimigoVida>0){
             this.inimigoVida=inimigoVida;
