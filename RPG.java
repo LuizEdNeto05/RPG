@@ -224,8 +224,10 @@ public class RPG {
 
                     }
                     
-
                 }
+                System.out.println(" ");
+                System.out.println("Turno do "+inimigo.getinimigoNome());
+                System.out.println(" ");
                 int escolhaInimigo = rand.nextInt(3) + 1;
 
                 if(escolhaInimigo == 1)
@@ -241,16 +243,13 @@ public class RPG {
                 }else if(escolhaInimigo == 3)
                 {
                     if(curainimigo>0)
-                    {
-                        
-                     int curaTotal = 0;
-                        
-                     curaTotal = Pocao.usarPocao( pocaoCura.getPontos());
+                    {                       
+                        int curaTotal = 0;                      
+                        curaTotal = Pocao.usarPocao( pocaoCura.getPontos());
+                        inimigoVida += curaTotal;                   
+                        curainimigo --;
+                        System.out.println("O inimigo curou "+curaTotal+" de vida");
 
-                     inimigoVida += curaTotal;
-                     
-                    curainimigo --;
-                    
                     }else if(cura <= 0){
                         System.out.println("O inimigo tenta se curar mas ele não tem mais cura");
 
@@ -284,29 +283,30 @@ public class RPG {
                     if(curainimigo>0){    
                         
                         //comando que ativa a função de cura pro inimigo
-                     int curaTotal = 0;
-                        
+                     int curaTotal = 0;                       
                      curaTotal = Pocao.usarPocao( pocaoCura.getPontos());
-
                      inimigoVida += curaTotal;
                      curainimigo--;
+                     System.out.println("O inimigo curou "+curaTotal+" de vida");
+
                     }else if(cura <= 0){
-                        System.out.println("adversario tenta curar mas ele n tem mais cura");
+                        System.out.println("O inimigo tenta se curar mas ele não tem mais cura");
                     }
                 }
-                
-
+                System.out.println(" ");
+                System.out.println("Turno do "+jogador.getNome());
+                System.out.println(" ");
                 agir = scanner1.nextInt();
 
                 if(agir == 1){
                     double danototal = danoJogador - inimigo.getinimigoDefesa();
                     
                     inimigoVida -= danototal;
-                    System.out.println("Voce causou :"+danototal);
+                    System.out.println("Você causou :"+danototal+" de dano");
 
                 }else if(agir == 2){
                     double defesatotal = defesaJogador*2;
-                    System.out.println("A defesa aumentou para:" +defesatotal);
+                    System.out.println("Sua defesa aumentou para:" +defesatotal);
                 }else if(agir == 3){                   
                     if(cura>0){                      
                     int curaTotal = 0;
@@ -315,8 +315,9 @@ public class RPG {
 
                      jogadorVida += curaTotal;
                      cura--;
+                     System.out.println("Você curou: " +curaTotal+" de vida");
                     }else if(cura <= 0){
-                        System.out.println("voce n tem mais cura");
+                        System.out.println("O inimigo tenta se curar mas ele não tem mais cura");
                     }         
                 }
 
@@ -340,14 +341,14 @@ public class RPG {
         //Pós-combate 1
         if (inimigoVida<=0) 
         {
-            System.out.println("Parabéns! Você concluiu o primeiro combate");
-            System.out.println("Subiu para o nível 2!");
-            System.out.println("Mais 5 pontos para atributos!");
+            System.out.println("Parabéns! Você derrotou o primeiro inimigo! Os demais ficam assustados com a sua batalha e decidem fugir!");
+            System.out.println(jogador.getNome()+" subiu para o nível 2!");
+            System.out.println(jogador.getNome()+" recebeu mais 5 pontos para atributos!");
 
             jogador.DistribuirPontos(2);
 
             //Nova vida Jogador
-            System.out.println("Sua vida aumentou!");
+            System.out.println("Vida de"+jogador.getNome+"aumentou!");
             jogadorVida = vida + jogador.getConstituicao();
             System.out.println("Sua nova vida é: "+jogadorVida);
 
@@ -356,7 +357,7 @@ public class RPG {
             Arma rapieira = new Arma("(Arma Leve)\n", 20); 
             Arma claymore = new Arma("(Arma pesada)\n", 30);
             Arma berdiche = new Arma("(Arma pesada)", 30); 
-            System.out.println("Agora escolha sua arma:");
+            System.out.println("Escolha sua  nova arma:");
             System.out.println("1) Rapieira "+rapieira.getCategoria()+" 2) Claymore "+claymore.getCategoria()+" 3) Berdiche "+berdiche.getCategoria());
             int escolhaArma2 = scanner1.nextInt();         
 
@@ -364,25 +365,25 @@ public class RPG {
             double danoJogadorLeve2=0, danoJogadorPesado2=0;
             if (escolhaArma2==1) {
                 danoJogadorLeve2 = Arma.ArmaLeve(jogador.getDestreza(), rapieira.getdanoConstante());
-                System.out.println("Sua arma causa "+danoJogadorLeve2+" de dano");
+                System.out.println("As suas habilidades combinadas à sua nova arma e a causalidade da realidade, determinaram que causas:");
+                System.out.println(+danoJogadorLeve+" de dano");
                 danoJogador = danoJogadorLeve2;          
             }else if (escolhaArma2==2) {
-                danoJogadorPesado2 = Arma.ArmaPesada(jogador.getDestreza(), claymore.getdanoConstante());
-                System.out.println("Sua arma causa "+danoJogadorPesado2+" de dano");
+                System.out.println("As suas habilidades combinadas à sua nova arma e a causalidade da realidade, determinaram que causas:");
+                System.out.println(+danoJogadorLeve+" de dano");
                 danoJogador = danoJogadorPesado2;
             }else if (escolhaArma2==3) {
                 danoJogadorPesado2 = Arma.ArmaPesada(jogador.getForca(), berdiche.getdanoConstante());
-                System.out.println("Sua arma causa "+danoJogadorPesado2+" de dano");
+                System.out.println("As suas habilidades combinadas à sua nova arma e a causalidade da realidade, determinaram que causas:");
+                System.out.println(+danoJogadorLeve+" de dano");
                 danoJogador = danoJogadorPesado2;
             }
 
-        }
-
-        
+        }    
 
         //Lista de Inimigos combate 2
         List<Inimigo> inimigos2 = new ArrayList<>();
-        inimigos2.add(new Inimigo("Golem de Pedra", 70, 60, 15,1));
+        inimigos2.add(new Inimigo("Lobisomem ", 70, 60, 15,1));
         inimigos2.add(new Inimigo("Soldado Amaldiçoado", 60, 40, 10, 1));
         Inimigo inimigo2 = inimigos2.get(rand.nextInt(inimigos2.size()));
 
@@ -394,12 +395,22 @@ public class RPG {
         cura = 3;
 
         //Combate 2
-        System.out.println("Os 2 inimigos tiram pedra, papel e tesoura para decidir quem vai te enfrentar");
-        System.out.println("e foi definido que o seu adversário será o " +inimigo2.getinimigoNome());
+        System.out.println("Após seu primeiro combate, "+jogador.getNome()+" acende uma nova tocha e continua à avançar afundo na caverna.");
+        System.out.println("Até que "+jogador.getNome+" chega a uma parte da caverna que possui um enorme buraco no topo. A luz da lua cheia ilumina parte do local.");
+        System.out.println("É então que se revelam duas figuras sob a luz, um Lobisoem e um cavaleiro amaldiçoado");
+        System.out.println("Os 2 inimigos discutem pois ambos querem te enfrentar");
+        System.out.println("É então que uma voz surge e diz para o " +inimigo2.getinimigoNome()+" enfrentá-lo. Ambos ouvem e sem hesitar, obedecem o comando da voz.");
+        
+        System.out.println("1) Continue");
+        prossiga = scanner1.nextInt();
+        limparTela();
+
         while (true) {
             
             int agir2;   
-
+            System.out.println(jogador.getNome()+" é mais rápido e inicia atacando!");
+            System.out.println(inimigo2.getinimigoNome()+" Vida: "+inimigo2Vida);
+            System.out.println(jogador.getNome()+" Vida: "+jogadorVida);
             
             //Combate para agilidade do jogador maior
             if(jogador.getAgilidade()>inimigo2.getinimigoAgilidade()){
@@ -413,30 +424,31 @@ public class RPG {
                     double danototal = danoJogador - inimigo2.getinimigoDefesa();
                     
                     inimigoVida2 -= danototal;
-                    System.out.println("-Voce causou :"+danototal);
+                    System.out.println("Você causou :"+danototal+" de dano");
 
                 }else if(agir2 == 2)
                 {
                     double defesatotal = defesaJogador*2;
-                    System.out.println("-A defesa aumentou para:" +defesatotal);
+                    System.out.println("Sua defesa aumentou para:" +defesatotal);
                 }else if(agir2 == 3){
                     
                     if(cura>0){
-                        
-   
-                    int curaTotal = 0;
-                        
+                          
+                    int curaTotal = 0;                     
                      curaTotal = Pocao.usarPocao( pocaoCura.getPontos());
-
                      jogadorVida += curaTotal;
                      cura--;
+                     System.out.println("Você curou: " +curaTotal+" de vida");
                     }else if(cura <= 0){
-                        System.out.println("-Voce não tem mais cura");
+                        System.out.println("Você não possui mais cura");
                     }
                     
 
                 }
-            
+
+                System.out.println(" ");
+                System.out.println("Turno do "+inimigo2.getinimigoNome());
+                System.out.println(" ");
                 int escolhaInimigo2 = rand.nextInt(3) + 1;
 
                 if(escolhaInimigo2 == 1){
@@ -466,8 +478,9 @@ public class RPG {
             }
                 //Combate para agilidade do Inimigo maior
                 else if(jogador.getAgilidade()<inimigo2.getinimigoAgilidade()){
-                    System.out.println(inimigo2.getinimigoNome()+ inimigo2.getinimigoVida());
-                    System.out.println(""+jogador.getNome() +jogador.getPv());
+                    System.out.println(inimigo2.getinimigoNome()+" é mais rápido e inicia atacando!");
+                System.out.println(inimigo.getinimigoNome()+" Vida: "+inimigoVida2);
+                System.out.println(jogador.getNome()+" Vida: "+jogadorVida);
                     
                     int escolhaInimigo2 = rand.nextInt(3) + 1;             
 
@@ -749,31 +762,3 @@ public class RPG {
              
               
 }
-
-/*public void acoesPersonagem()
-    {
-        int acao;
-        Scanner agir = new Scanner(System.in);
-        int cura = 3;
-
-
-        System.out.println("É a sua vez, o que deseja fazer?\n");
-        System.out.println("1) Atacar\n 2) Defender\n 3) Curar\n");
-
-        acao = agir.nextInt();
-
-        if(acao == 1)
-        {
-            Goblin.inimigoVida -= ArmaLeve(); ;
-        }
-    } */
-    
-     
-}
-    
-     /*public static Inimigo sortearInimigoAleatorio(List<Inimigo> inimigos) {
-        Random random = new Random();
-        int indice = random.nextInt(inimigos.size());
-        return inimigos.get(indice);
-    }*/
-    
