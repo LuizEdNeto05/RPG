@@ -35,6 +35,7 @@ public class RPG {
         Scanner scanner1;
         Scanner nome;
         int escolhaMenu;
+        int prossiga;
         
         while(true){
         scanner1 = new Scanner(System.in);
@@ -68,6 +69,8 @@ public class RPG {
         
         if(escolhaMenu==1){
         limparTela();
+        while(true){
+
         
         //Input nome
         System.out.println("Olá herói! Me diga, qual é o seu nome?");
@@ -87,9 +90,9 @@ public class RPG {
         
         limparTela();
                
-        Arma porrete = new Arma("(Arma Leve)\n", 10); 
-        Arma faca = new Arma("(Arma Leve)\n", 10);
-        Arma machado = new Arma("(Arma pesada)", 20); 
+        Arma porrete = new Arma("(Arma Leve)\n", 5); 
+        Arma faca = new Arma("(Arma Leve)\n", 7);
+        Arma machado = new Arma("(Arma pesada)", 10); 
         System.out.println("Para enfrentar as sombras é preciso não só ter coragem e bravura, mas também algumas ferramentas. Escolha sua arma:");
         System.out.println("1) Porrete "+porrete.getCategoria()+" 2) Faca "+faca.getCategoria()+" 3) Machado "+machado.getCategoria());
         int escolhaArma = scanner1.nextInt();
@@ -117,13 +120,13 @@ public class RPG {
         }
     
         System.out.println("1) Continue");
-        int prossiga = scanner1.nextInt();
+        prossiga = scanner1.nextInt();
         limparTela();
 
         //Escolher armadura
-        Armadura ladrão = new Armadura(5);
-        Armadura couro = new Armadura(10);
-        Armadura malha = new Armadura(15);
+        Armadura ladrão = new Armadura(7);
+        Armadura couro = new Armadura(8);
+        Armadura malha = new Armadura(10);
         System.out.println("Agora escolha sua armadura:");
         System.out.println("1) Armadura de ladrão   2) Armadura de Couro   3) Armadura de malha");
         int escolhaArmadura = scanner1.nextInt();
@@ -165,9 +168,9 @@ public class RPG {
         int cura = 3, curainimigo =3, curaboss = 3, curainimigo2 =3;
         //Lista de Inimigos combate 1
         List<Inimigo> inimigos1 = new ArrayList<>(); 
-        inimigos1.add(new Inimigo("Goblin Verde", 20, 30, 5,1));
-        inimigos1.add(new Inimigo("Grande ogro", 40, 50, 5, 1));
-        inimigos1.add(new Inimigo("Esqueleto", 30, 5, 4, 1));
+        inimigos1.add(new Inimigo("Goblin Verde", 20, 14, 5,1));
+        inimigos1.add(new Inimigo("Grande ogro", 40, 16, 5, 1));
+        inimigos1.add(new Inimigo("Esqueleto", 30, 11, 4, 1));
         Inimigo inimigo = inimigos1.get(rand.nextInt(inimigos1.size()));
 
         double inimigoVida;                   
@@ -232,7 +235,7 @@ public class RPG {
 
                 if(escolhaInimigo == 1)
                 {
-                    double danoInimigo2 = dado6() + dado6() + dado6() + 5;
+                    double danoInimigo2 = dado6() + dado6() + dado6() + inimigo.getinimigoForca();
                     danoInimigo2 = danoInimigo2 - defesaJogador;
                     jogadorVida -= danoInimigo2;
                     System.out.println("Seu inimigo causou: "+danoInimigo2+" de dano");
@@ -273,7 +276,7 @@ public class RPG {
 
                 if(escolhaInimigo == 1){
 
-                    double danoInimigo = dado6() + dado6() + dado6() + 5;
+                    double danoInimigo = dado6() + dado6() + dado6() + inimigo.getinimigoForca();
                     danoInimigo = danoInimigo - defesaJogador;
                     jogadorVida -= danoInimigo;
                     System.out.println("Seu inimigo causou dano de: "+danoInimigo);
@@ -331,13 +334,19 @@ public class RPG {
                     break;
                 }
             }
-            if(inimigoVida <= 0 || jogadorVida<=0){
-                    break;
-                }
+            
+
+
+
+               
         }
 
-        if(jogadorVida<=0)
+         if(jogadorVida<=0)
         {
+
+            System.out.println("GAME OVER");
+            System.out.println("Aperte qualquer tecla para continuar");
+
            break; 
         }
 
@@ -354,15 +363,15 @@ public class RPG {
             jogador.DistribuirPontos(2);
 
             //Nova vida Jogador
-            System.out.println("Vida de"+jogador.getNome+"aumentou!");
+            System.out.println("Vida de"+jogador.getNome()+"aumentou!");
             jogadorVida = vida + jogador.getConstituicao();
             System.out.println("Sua nova vida é: "+jogadorVida);
 
             //Escolha da nova arma
             System.out.println("Novas Armas podem ser escolhidas!");
-            Arma rapieira = new Arma("(Arma Leve)\n", 20); 
-            Arma claymore = new Arma("(Arma pesada)\n", 30);
-            Arma berdiche = new Arma("(Arma pesada)", 30); 
+            Arma rapieira = new Arma("(Arma Leve)\n", 16); 
+            Arma claymore = new Arma("(Arma pesada)\n", 18);
+            Arma berdiche = new Arma("(Arma pesada)", 26); 
             System.out.println("Escolha sua  nova arma:");
             System.out.println("1) Rapieira "+rapieira.getCategoria()+" 2) Claymore "+claymore.getCategoria()+" 3) Berdiche "+berdiche.getCategoria());
             int escolhaArma2 = scanner1.nextInt();         
@@ -402,7 +411,7 @@ public class RPG {
 
         //Combate 2
         System.out.println("Após seu primeiro combate, "+jogador.getNome()+" acende uma nova tocha e continua à avançar afundo na caverna.");
-        System.out.println("Até que "+jogador.getNome+" chega a uma parte da caverna que possui um enorme buraco no topo. A luz da lua cheia ilumina parte do local.");
+        System.out.println("Até que "+jogador.getNome()+" chega a uma parte da caverna que possui um enorme buraco no topo. A luz da lua cheia ilumina parte do local.");
         System.out.println("É então que se revelam duas figuras sob a luz, um Lobisoem e um cavaleiro amaldiçoado");
         System.out.println("Os 2 inimigos discutem pois ambos querem te enfrentar");
         System.out.println("É então que uma voz surge e diz para o " +inimigo2.getinimigoNome()+" enfrentá-lo. Ambos ouvem e sem hesitar, obedecem o comando da voz.");
@@ -412,6 +421,8 @@ public class RPG {
         limparTela();
 
         while (true) {
+
+            
             
             int agir2;   
             
@@ -419,7 +430,7 @@ public class RPG {
             //Combate para agilidade do jogador maior
             if(jogador.getAgilidade()>inimigo2.getinimigoAgilidade()){
                 System.out.println(jogador.getNome()+" é mais rápido e inicia atacando!");
-                System.out.println(inimigo2.getinimigoNome()+" Vida: "+inimigo2Vida);
+                System.out.println(inimigo2.getinimigoNome()+" Vida: "+inimigoVida2);
                 System.out.println(jogador.getNome()+" Vida: "+jogadorVida);
                 System.out.println("1) Atacar   2) Defender   3)Curar");
                 agir2 = scanner1.nextInt();
@@ -457,10 +468,10 @@ public class RPG {
                 int escolhaInimigo2 = rand.nextInt(3) + 1;
 
                 if(escolhaInimigo2 == 1){
-                    double danoInimigo = dado6() + dado6() + dado6() + 5;
+                    double danoInimigo = dado6() + dado6() + dado6() + inimigo.getinimigoForca();
                     danoInimigo = danoInimigo - defesaJogador;
                     jogadorVida -= danoInimigo;
-                    System.out.println("Seu inimigo causou dano de: "+danoInimigo2);
+                    System.out.println("Seu inimigo causou dano de: "+danoInimigo);
                 }else if(escolhaInimigo2 == 2){
                     int def2 = inimigo2.getinimigoDefesa() * 2;
                     System.out.println("Defesa inimiga aumentada para: "+def2);
@@ -470,7 +481,7 @@ public class RPG {
                         
                      curaTotal = Pocao.usarPocao(pocaoCura.getPontos());
 
-                     jogadorVida += curaTotal;
+                     inimigoVida2 += curaTotal;
                         curainimigo2 --;
                         System.out.println("O inimigo curou "+curaTotal+" de vida");
                     }else if(cura <= 0){
@@ -490,7 +501,7 @@ public class RPG {
                     int escolhaInimigo2 = rand.nextInt(3) + 1;             
 
                     if(escolhaInimigo2 == 1){
-                    double danoInimigo2 = dado6() + dado6() + dado6() + 5;
+                    double danoInimigo2 = dado6() + dado6() + dado6() + inimigo2.getinimigoForca();
                     double danoInimigo2t = danoInimigo2 - defesaJogador;
                     jogadorVida -= danoInimigo2t;
 
@@ -504,13 +515,13 @@ public class RPG {
                         
                      curaTotal = Pocao.usarPocao(pocaoCura.getPontos());
 
-                     jogadorVida += curaTotal;
+                     inimigoVida2 += curaTotal;
                      curainimigo2 --;                        
                     }else if(curainimigo <= 0){
                         System.out.println("O inimigo tenta se curar mas ele não tem mais cura");
                     }
                     }
-                    System.ou.println("Seu turno: ");
+                    System.out.println("Seu turno: ");
                     System.out.println(inimigo2.getinimigoNome()+" Vida: "+inimigoVida2);
                     System.out.println(""+jogador.getNome()+" Vida: " +jogadorVida);
                     System.out.println("1) Atacar   2) Defender   3)Curar");
@@ -555,6 +566,15 @@ public class RPG {
             }
         }
 
+        if(jogadorVida<=0)
+        {
+
+            System.out.println("GAME OVER");
+            System.out.println("Aperte qualquer tecla para continuar");
+
+           break; 
+        }
+
         cura = 0;
 
         //Pós combate 2
@@ -573,9 +593,9 @@ public class RPG {
 
             //Escolha da nova arma
             System.out.println("Novas Armas podem ser escolhidas!");
-            Armadura viking = new Armadura( 25); 
-            Armadura templário = new Armadura( 35);
-            Armadura Samurai = new Armadura( 40); 
+            Armadura viking = new Armadura( 14); 
+            Armadura templário = new Armadura( 16);
+            Armadura Samurai = new Armadura( 24); 
             System.out.println("Agora escolha sua nova armadura:");
             System.out.println("1) Armadura de Viking 2) Armadura de Cavaleiro Templário 3) Armadura de Samurai");
             int escolhaArmadura2 = scanner1.nextInt();         
@@ -600,7 +620,7 @@ public class RPG {
 
         cura = 3;
         //Combate Boss
-        Inimigo boss = new Inimigo("Lorde das Sombras", 150, 25, 20, 15 );
+        Inimigo boss = new Inimigo("Lorde das Sombras", 150, 40, 20, 15 );
 
         double bossVida;                   
         bossVida = boss.getinimigoVida();
@@ -608,7 +628,7 @@ public class RPG {
         System.out.println(bossVida); 
 
         System.out.println("Após "+jogador.getNome()+" derrotar seu inimigo, o outro com quem ele estava discutindo se preparava para lutar, mas aquela voz novamente apareceu.");
-        System.out.println("Uma escuridão, mais escura que as próprias sombras daquela caverna se revelava. Lá estava ele, o Lorde das sombras se revelava e dispensa seu subordinado.")
+        System.out.println("Uma escuridão, mais escura que as próprias sombras daquela caverna se revelava. Lá estava ele, o Lorde das sombras se revelava e dispensa seu subordinado.");
         System.out.println("Ele se aproxima, o "+ boss.getinimigoNome()+" será seu desafio final!");
 
         System.out.println("1) Continue");
@@ -623,7 +643,7 @@ public class RPG {
             if(jogador.getAgilidade()>boss.getinimigoAgilidade()){
 
                 System.out.println(jogador.getNome()+" é mais rápido e inicia atacando!");
-                System.out.println(inimigo2.getinimigoNome()+" Vida: "+inimigo2Vida);
+                System.out.println(inimigo2.getinimigoNome()+" Vida: "+bossVida);
                 System.out.println(jogador.getNome()+" Vida: "+jogadorVida);
                 System.out.println("1) Atacar   2) Defender   3)Curar");
                 agir3 = scanner1.nextInt();
@@ -656,14 +676,14 @@ public class RPG {
                     
 
                 }
-                System.ou.println("Turno Inimigo: ");
+                System.out.println("Turno Inimigo: ");
                 int escolhaInimigo3 = rand.nextInt(3) + 1;
 
                 if(escolhaInimigo3 == 1){
-                    double danoInimigo = dado6() + dado6() + dado6() + boss.getinimigoForca();
-                    danoInimigo = danoInimigo - defesaJogador;
-                    jogadorVida -= danoInimigo;
-                    System.out.println("Seu inimigo causou dano de: "+danoInimigo);
+                    double danoBoss = dado6() + dado6() + dado6() + boss.getinimigoForca();
+                   double  danoBosstotal = danoBoss - defesaJogador;
+                    jogadorVida -= danoBosstotal;
+                    System.out.println("Seu inimigo causou dano de: "+danoBosstotal);
                 }else if(escolhaInimigo3 == 2){
                     int def3 = boss.getinimigoDefesa() * 2;
                     System.out.println("Inimigo aumentou defesa para: "+def3);
@@ -673,7 +693,7 @@ public class RPG {
                         
                      curaTotal = Pocao.usarPocao(pocaoCura.getPontos());
 
-                     jogadorVida += curaTotal;
+                     bossVida += curaTotal;
                         curaboss --;
                         System.out.println("Inimigo curou "+curaTotal+" de vida");
                     }else if(cura <= 0){
@@ -706,7 +726,7 @@ public class RPG {
                         
                      curaTotal = Pocao.usarPocao(pocaoCura.getPontos());
 
-                     jogadorVida += curaTotal;
+                     bossVida += curaTotal;
                         curaboss --;
                         System.out.println("Inimigo curou "+curaTotal+" de vida");
                     }else if(curainimigo <= 0){
@@ -719,7 +739,7 @@ public class RPG {
                     
                     
                     
-                    System.out.println("Seu turno: ")
+                    System.out.println("Seu turno: ");
                     System.out.println("1) Atacar     2)defender     3)Curar");
                     agir3 = scanner1.nextInt();
 
@@ -759,9 +779,34 @@ public class RPG {
 
             }
         }
+
+        if(jogadorVida<=0)
+        {
+
+            System.out.println("GAME OVER");
+            System.out.println("Aperte qualquer tecla para continuar");
+
+           break; 
+        }
+
+    }
         
         }else if(escolhaMenu == 2){      
-            System.out.println("Lore"); //LORE A SER DEFINIDA
+            System.out.println("Em um reino onde magia e tecnologia se entrelaçam, um herói desconhecido é convocado por seu mestre Ottogir, cujo nome"); 
+            System.out.println(" esconde o segredo de sua verdadeira identidade. A missão épica do herói o levará em busca do lendário conhecimento total de Vaaj, aprisionado");
+            System.out.println(" pelo temível Lorde das Sombras. Sua missão é faze-lo embarcar em uma busca pelo conhecimento total de Vaaj, onde segredos mágicos");
+            System.out.println("e códigos misteriosos se unem");
+
+            System.out.println("Digite 1 para continuar");
+
+            prossiga = scanner1.nextInt();
+
+            if(prossiga == 1)
+            {
+                
+            }
+
+            
         }else if(escolhaMenu==3){
 
             break;
@@ -772,3 +817,5 @@ public class RPG {
     scanner1.close();
     nome.close();           
 }
+}
+
