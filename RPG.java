@@ -620,7 +620,7 @@ public class RPG {
 
         cura = 3;
         //Combate Boss
-        Inimigo boss = new Inimigo("Lorde das Sombras", 150, 40, 20, 15 );
+        Inimigo boss = new Inimigo("Lorde das Sombras", 15, 40, 20, 15 );
 
         double bossVida;                   
         bossVida = boss.getinimigoVida();
@@ -787,6 +787,19 @@ public class RPG {
             System.out.println("Aperte qualquer tecla para continuar");
 
            break; 
+        } if(bossVida<=0){
+            System.out.println("Parabéns guerreiro!");
+            System.out.println("Graças a sua coragem e empenho, os conhecimentos de Vaaj agora estão em mãos seguras!");
+            System.out.println("Agora de volta ao seu mestre, Ottogir pede para que voce use essa magia e crie uma simulação");
+            System.out.println("em que uma determinada pessoa se submeta a situações fictícias de aventuras.");
+
+            System.out.println("Aperte qualquer tecla para continuar");
+
+            prossiga = scanner1.nextInt();
+
+             break;
+
+
         }
 
     }
