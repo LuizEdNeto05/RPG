@@ -21,6 +21,9 @@
 
 ## Integrantes
 
+### Luiz Eduardo Neto
+  [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LuizEdNeto05) 
 
-   Luiz Eduardo Neto
-   Yuri Severo
+###  Yuri Severo Costa
+
+[![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Yuri-Severo)
